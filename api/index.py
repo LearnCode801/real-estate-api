@@ -46,10 +46,8 @@ def extract_house_features(text):
     - Location
     - Price of the house
     - Contact number
-
     Input text:
     {text}
-
     Strictly return valid JSON and Reference Response in the below format:
     
     "number_of_bedrooms": 2,
@@ -68,6 +66,16 @@ def extract_house_features(text):
     result = chain.run(text)
     return result
 
+# Root endpoint
+@app.get("/")
+async def root():
+    return {"message": "Hello I am Talha"}
+
+# API endpoint
+@app.get("/api")
+async def api_root():
+    return {"message": "Welcome to AdFrame Real Estate API. Use /api/extract-features endpoint to extract house features."}
+
 # API endpoint to extract house features
 @app.post("/api/extract-features", response_model=HouseFeatures)
 async def extract_features(request: HouseDescriptionRequest):
@@ -84,8 +92,3 @@ async def extract_features(request: HouseDescriptionRequest):
         return house_features
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing request: {str(e)}")
-
-# Root endpoint
-@app.get("/api")
-async def root():
-    return {"message": "Welcome to AdFrame Real Estate API. Use /api/extract-features endpoint to extract house features."}
