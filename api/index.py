@@ -16,7 +16,7 @@ app = FastAPI(
 
 # Configure the Gemini API key
 # In production, use environment variables
-gemini_api_key = os.environ.get("GEMINI_API_KEY", "AIzaSyAgu1TV2Fnm37VCtHxN4KCEO0b0QvcP0Ds")
+gemini_api_key = os.environ.get("GEMINI_API_KEY")
 
 # Pydantic models for request and response
 class HouseDescriptionRequest(BaseModel):
