@@ -61,7 +61,7 @@ def extract_house_features(text):
     "contact_number": "0321-4090997"
     """
     prompt = PromptTemplate(template=template, input_variables=["text"])
-    llm = ChatGoogleGenerativeAI(model="gemini-pro", api_key=gemini_api_key)
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", api_key=gemini_api_key)
     chain = LLMChain(prompt=prompt, llm=llm)
     result = chain.run(text)
     return result
